@@ -28,11 +28,13 @@
 # Array of source directories to concatenate
 SRC_DIRS=(
     "./src"
+    "./screenbuf/src"
 )
 
 # Array of titles corresponding to each source directory
 TITLES=(
     "////// cobol graphics program"
+    "////// screen buffer"
 )
 
 # Array of explicit source files to concatenate (if any)
