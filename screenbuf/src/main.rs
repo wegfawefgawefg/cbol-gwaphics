@@ -3,8 +3,8 @@ use std::io::{self, BufRead};
 use std::sync::mpsc::{self, TryRecvError};
 use std::thread;
 
-const WIDTH: usize = 640;
-const HEIGHT: usize = 480;
+const WIDTH: usize = 64;
+const HEIGHT: usize = 64;
 const TITLE: &str = "COBOL Screenbuffer (stdin -> Raylib)";
 
 #[derive(Debug)]

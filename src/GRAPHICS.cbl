@@ -33,10 +33,18 @@
            05  C-PLOT-X  PIC S9(4).
            05  C-PLOT-Y  PIC S9(4).
 
+           COPY SETTINGS.
+
+       01  MAX-X         PIC 9(4).
+       01  MAX-Y         PIC 9(4).
+
        LINKAGE SECTION.
            COPY GFXARGS.
 
        PROCEDURE DIVISION USING GFX-ARGS.
+           COMPUTE MAX-X = WIDTH - 1
+           COMPUTE MAX-Y = HEIGHT - 1
+           .
 
       * THE DISPATCHER SWITCH
            EVALUATE TRUE
@@ -47,8 +55,8 @@
               WHEN OP-DRAW-CIRC
                    PERFORM DRAW-CIRC-LOGIC
               WHEN OP-FILL
-                   PERFORM VARYING L-Y FROM 0 BY 1 UNTIL L-Y > 479
-                      PERFORM VARYING L-X FROM 0 BY 1 UNTIL L-X > 639
+                   PERFORM VARYING L-Y FROM 0 BY 1 UNTIL L-Y > MAX-Y
+                      PERFORM VARYING L-X FROM 0 BY 1 UNTIL L-X > MAX-X
                          PERFORM EMIT-PIXEL
                       END-PERFORM
                    END-PERFORM
@@ -57,8 +65,8 @@
                    MOVE 0 TO GFX-COLOR-G
                    MOVE 0 TO GFX-COLOR-B
 
-                   PERFORM VARYING L-Y FROM 0 BY 1 UNTIL L-Y > 479
-                      PERFORM VARYING L-X FROM 0 BY 1 UNTIL L-X > 639
+                   PERFORM VARYING L-Y FROM 0 BY 1 UNTIL L-Y > MAX-Y
+                      PERFORM VARYING L-X FROM 0 BY 1 UNTIL L-X > MAX-X
                          PERFORM EMIT-PIXEL
                       END-PERFORM
                    END-PERFORM

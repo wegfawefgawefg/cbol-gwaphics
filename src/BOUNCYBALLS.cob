@@ -1,6 +1,6 @@
       *****************************************************************
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. MAIN.
+       PROGRAM-ID. BOUNCYBALLS.
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
