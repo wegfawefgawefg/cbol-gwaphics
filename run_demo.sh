@@ -5,7 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 pushd "$ROOT_DIR" >/dev/null
 
 PIPE_PATH="target/screenbuf.pipe"
-COBOL_SRC="src/draw_gradient.cob"
+COBOL_SRC="${1:-src/MAIN.cob}"
 
 cleanup() {
   if [[ -n "${SCREENBUF_PID:-}" ]]; then
@@ -33,5 +33,5 @@ if [[ ! -p "$PIPE_PATH" ]]; then
   exit 1
 fi
 
-echo "[2/2] Running COBOL gradient demo..."
+echo "[2/2] Running COBOL demo: $COBOL_SRC"
 ./run_cobol.sh "$COBOL_SRC"

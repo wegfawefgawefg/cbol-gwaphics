@@ -10,7 +10,7 @@ cargo build --release
 cargo run --release < pixel_commands.txt
 ```
 
-The window is resizable; the 640×480 buffer will scale to fit.
+The window is resizable; the `64x64` buffer will scale to fit.
 
 ## Text Protocol
 
@@ -20,27 +20,21 @@ Each line on `stdin` must contain five decimal fields separated by whitespace:
 x y r g b
 ```
 
-- `x`, `y`: zero-based pixel coordinates (clamped to `0 <= x < 640`, `0 <= y < 480`)
-- `r`, `g`, `b`: 0–255 color channels; alpha is forced to 255
+- `x`, `y`: zero-based pixel coordinates (clamped to `0 <= x < 64`, `0 <= y < 64`)
+- `r`, `g`, `b`: 0-255 color channels; alpha is forced to 255
 
 Anything malformed is ignored so noisy producers do not crash the viewer.
 
-## COBOL Producer Example
-
-`refs/draw_gradient.cob` emits a simple gradient frame in the expected format. Build it with `cobc`:
-
-```bash
-cobc -x -o target/draw-gradient refs/draw_gradient.cob
-```
-
-You can swap in whatever drawing logic you want; just print lines in the protocol above.
-
 ## Demo Glue Script
 
-`refs/run_demo.sh` compiles the COBOL program, builds the Rust screenbuffer, then pipes one into the other:
+From the repo root, `run_demo.sh` builds the Rust viewer, then compiles a COBOL producer and pipes it into the viewer via a named FIFO:
 
 ```bash
-./refs/run_demo.sh
+./run_demo.sh
 ```
 
-Feel free to replace `target/draw-gradient` with your own COBOL binary or point the pipe at a named FIFO for interactive multi-process drawing.
+You can also run a specific COBOL producer:
+
+```bash
+./run_demo.sh src/ANT.cob
+```
