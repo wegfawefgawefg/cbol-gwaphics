@@ -10,6 +10,10 @@ x y r g b
 
 and the viewer treats them as pixel updates on a `64x64` framebuffer.
 
+## Screenshot
+
+![screenbuf viewer showing COBOL pixel output](screenshot.jpg)
+
 ## Quickstart
 
 ### Prereqs
